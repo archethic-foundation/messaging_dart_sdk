@@ -29,8 +29,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "feature/signTx_returnsKeypair"
-      resolved-ref: b7216cf1c838de379043cc01995100aea1852bd7
+      ref: dev
+      resolved-ref: a6b5fbe3061f4e3e5934d32ee47f4e59fccb2057
       url: "https://github.com/archethic-foundation/libdart.git"
     source: git
     version: "3.3.0"
