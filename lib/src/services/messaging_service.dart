@@ -21,8 +21,11 @@ class MessagingService with DiscussionMixin, MessagesMixin {
   /// @param{List<String>} List of ALL admins of the discussion (public key)
   /// @param{String} Address of the admin who want to add members (this address will provision the SC's chain to manage fees)
   /// @param{String} Service name in the current keychain (= admin)
-  Future<({archethic.Transaction transaction, int transactionIndex})>
-      createDiscussion({
+  Future<
+      ({
+        archethic.Transaction transaction,
+        archethic.KeyPair previousKeyPair
+      })> createDiscussion({
     required archethic.Keychain keychain,
     required archethic.ApiService apiService,
     required List<String> membersPubKey,
@@ -52,8 +55,11 @@ class MessagingService with DiscussionMixin, MessagesMixin {
   /// @param{String} Address of the admin who want to add members (this address will provision the SC's chain to manage fees)
   /// @param{String} Service name in the current keychain (= admin)
   /// @param{String} Update or not the AES Key, members that are deleted won't be able to read the new messages anymore
-  Future<({archethic.Transaction transaction, int transactionIndex})>
-      updateDiscussion({
+  Future<
+      ({
+        archethic.Transaction transaction,
+        archethic.KeyPair previousKeyPair
+      })> updateDiscussion({
     required archethic.Keychain keychain,
     required archethic.ApiService apiService,
     required String discussionSCAddress,
@@ -109,8 +115,11 @@ class MessagingService with DiscussionMixin, MessagesMixin {
   /// @param{String} Address of the member who want to send message
   /// @param{String} Service name in the current keychain (= sender)
   /// @param{KeyPair} Keypair of the sender
-  Future<({archethic.Address transactionAddress, int transactionIndex})>
-      sendMessage({
+  Future<
+      ({
+        archethic.Address transactionAddress,
+        archethic.KeyPair previousKeyPair
+      })> sendMessage({
     required archethic.Keychain keychain,
     required archethic.ApiService apiService,
     required String discussionSCAddress,
@@ -150,8 +159,11 @@ class MessagingService with DiscussionMixin, MessagesMixin {
   /// @param{ApiService} API with blockchain
   /// @param{String} Smart contract's address
   /// @param{KeyPair} Keypair of the requester to check if discussion's content can be decrypted
-  Future<({archethic.Transaction transaction, int transactionIndex})>
-      buildMessage({
+  Future<
+      ({
+        archethic.Transaction transaction,
+        archethic.KeyPair previousKeyPair
+      })> buildMessage({
     required archethic.Keychain keychain,
     required archethic.ApiService apiService,
     required String discussionSCAddress,
