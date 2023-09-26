@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+name: archethic_messaging_lib_dart
+description: Archethic dart library for Flutter for Node and Browser. This library aims to provide a easy way to manage Archethic Messaging Features
+homepage: https://github.com/archethic-foundation/messaging_backend
+
+version: 1.0.0
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  # Archethic dart library for Flutter based on Official Archethic Javascript library for Node and Browser
+  #archethic_lib_dart: ^3.2.0
+  archethic_lib_dart:
+    git:
+      url: https://github.com/archethic-foundation/libdart.git
+      ref: 107-externalise-to-a-specific-lib-the-messaging-feature
+
+  # Compression
+  archive: ^3.3.7
+
+  # Annotations for the freezed code-generator. This package does nothing without freezed too
+  freezed_annotation: ^2.4.1
+
+dev_dependencies:
+  # A build system for Dart code generation and modular compilation.
+  build_runner: ^2.4.6
+
+  # A tool to help you find missing, under-promoted, over-promoted, and unused dependencies.
+  dependency_validator: ^3.2.2
+
+  # Code generation for immutable classes that has a simple syntax/API without compromising on the features
+  freezed: ^2.4.2
+
+  # Automatically generate code for converting to and from JSON by annotating Dart classes.
+  json_serializable: ^6.7.1
+
+  # A full featured library for writing and running Dart tests across platforms.
+  test: ^1.24.6
