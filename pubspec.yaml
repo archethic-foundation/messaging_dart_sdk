@@ -26,14 +26,8 @@ dev_dependencies:
   # A build system for Dart code generation and modular compilation.
   build_runner: ^2.4.6
 
-  # A tool to help you find missing, under-promoted, over-promoted, and unused dependencies.
-  dependency_validator: ^3.2.2
-
   # Code generation for immutable classes that has a simple syntax/API without compromising on the features
   freezed: ^2.4.2
-
-  # Automatically generate code for converting to and from JSON by annotating Dart classes.
-  json_serializable: ^6.7.1
 
   # A full featured library for writing and running Dart tests across platforms.
   test: ^1.24.6
