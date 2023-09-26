@@ -156,9 +156,13 @@ class MessagingService with DiscussionMixin, MessagesMixin {
   }
 
   /// Build a message
+  /// @param{Keychain} keychain used to send transaction to BC
   /// @param{ApiService} API with blockchain
   /// @param{String} Smart contract's address
-  /// @param{KeyPair} Keypair of the requester to check if discussion's content can be decrypted
+  /// @param{String} Content of the message (no encrypt)
+  /// @param{String} Address of the member who want to send message
+  /// @param{String} Service name in the current keychain (= sender)
+  /// @param{KeyPair} Keypair of the sender
   Future<
       ({
         archethic.Transaction transaction,
