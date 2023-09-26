@@ -179,7 +179,7 @@ mixin DiscussionMixin {
         .originSign(originPrivateKey);
 
     // Estimation of fees and send to SC's transaction chain
-    final transactionTransferSigned = await _provisionSC(
+    final transactionTransferResult = await _provisionSC(
       apiService: apiService,
       issuerAddress: adminAddress,
       keychain: keychain,
@@ -190,7 +190,7 @@ mixin DiscussionMixin {
     );
 
     await TransactionUtil().sendTransactions(
-      transactions: [transactionTransferSigned, transactionSC],
+      transactions: [transactionTransferResult.transaction, transactionSC],
       apiService: apiService,
     );
 
@@ -272,7 +272,7 @@ end
     return membersAuthorizedKeys;
   }
 
-  Future<Transaction> _provisionSC({
+  Future<({Transaction transaction, int transactionIndex})> _provisionSC({
     required Keychain keychain,
     required ApiService apiService,
     required Transaction transactionSC,
@@ -294,13 +294,18 @@ end
       [issuerAddress],
     );
 
-    return keychain
-        .buildTransaction(
-          transactionTransfer,
-          serviceName,
-          indexMap[issuerAddress] ?? 0,
-        )
-        .originSign(originPrivateKey);
+    final index = indexMap[issuerAddress] ?? 0;
+
+    return (
+      transaction: keychain
+          .buildTransaction(
+            transactionTransfer,
+            serviceName,
+            index,
+          )
+          .originSign(originPrivateKey),
+      transactionIndex: index
+    );
   }
 
   Future<AEDiscussion?> getDiscussionFromSCAddress({
