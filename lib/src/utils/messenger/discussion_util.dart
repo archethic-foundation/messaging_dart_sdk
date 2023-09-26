@@ -296,7 +296,7 @@ end
       [issuerAddress],
     );
 
-    final index = (indexMap[issuerAddress] ?? 0) + 1;
+    final index = indexMap[issuerAddress] ?? 0;
 
     final transactionBuildResult = keychain.buildTransaction(
       transactionTransfer,
