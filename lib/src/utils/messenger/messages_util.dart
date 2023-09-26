@@ -12,7 +12,7 @@ import 'package:archive/archive_io.dart';
 /// The messages will be contained in the inputs of the smart contracts in the chain.
 /// A general public key for accessing messages is made available.
 mixin MessagesMixin {
-  Future<({Transaction transaction, int transactionIndex})>
+  Future<({Transaction transaction, KeyPair previousKeyPair})>
       buildMessageSendTransaction({
     required Keychain keychain,
     required ApiService apiService,
@@ -40,15 +40,16 @@ mixin MessagesMixin {
     final index = indexMap[senderAddress] ?? 0;
     final originPrivateKey = apiService.getOriginKey();
 
+    final buildTxResult =
+        keychain.buildTransaction(tx, senderServiceName, index);
+
     return (
-      transaction: keychain
-          .buildTransaction(tx, senderServiceName, index)
-          .originSign(originPrivateKey),
-      transactionIndex: index + 1,
+      transaction: buildTxResult.transaction.originSign(originPrivateKey),
+      previousKeyPair: buildTxResult.keyPair,
     );
   }
 
-  Future<({Address transactionAddress, int transactionIndex})> send({
+  Future<({Address transactionAddress, KeyPair previousKeyPair})> send({
     required Keychain keychain,
     required ApiService apiService,
     required String discussionSCAddress,
@@ -74,7 +75,7 @@ mixin MessagesMixin {
     );
     return (
       transactionAddress: transaction.address!,
-      transactionIndex: result.transactionIndex,
+      previousKeyPair: result.previousKeyPair,
     );
   }
 

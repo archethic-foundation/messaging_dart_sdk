@@ -10,7 +10,7 @@ import 'package:archethic_messaging_lib_dart/src/model/messaging/ae_discussion.d
 /// The messages will be contained in the inputs of the smart contracts in the chain.
 /// A general public key for accessing messages is made available.
 mixin DiscussionMixin {
-  Future<({Transaction transaction, int transactionIndex})>
+  Future<({Transaction transaction, KeyPair previousKeyPair})>
       updateTransactionSC({
     required Keychain keychain,
     required ApiService apiService,
@@ -89,27 +89,27 @@ mixin DiscussionMixin {
       ],
     ).addUCOTransfer(discussionSCAddress, toBigInt(5));
 
-    final transactionTransferSigned = keychain
-        .buildTransaction(
-          transactionTransfer,
-          serviceName,
-          indexMap[adminAddress]!,
-        )
-        .originSign(originPrivateKey);
+    final transactionTransferBuildResult = keychain.buildTransaction(
+      transactionTransfer,
+      serviceName,
+      indexMap[adminAddress]!,
+    );
+
+    final transactionTransferSigned =
+        transactionTransferBuildResult.transaction.originSign(originPrivateKey);
 
     await TransactionUtil().sendTransactions(
       transactions: [transactionTransferSigned],
       apiService: apiService,
     );
-    final index = (indexMap[adminAddress] ?? 0) + 1;
 
     return (
       transaction: transactionTransferSigned,
-      transactionIndex: index,
+      previousKeyPair: transactionTransferBuildResult.keyPair,
     );
   }
 
-  Future<({Transaction transaction, int transactionIndex})>
+  Future<({Transaction transaction, KeyPair previousKeyPair})>
       createTransactionSC({
     required Keychain keychain,
     required ApiService apiService,
@@ -147,7 +147,7 @@ mixin DiscussionMixin {
     final originPrivateKey = apiService.getOriginKey();
 
     /// Create a new transaction typed Smart Contract to manage a discussion
-    final transactionSC = Transaction(
+    final transactionSCBuildResult = Transaction(
       type: 'contract',
       data: Transaction.initData(),
     )
@@ -175,8 +175,10 @@ mixin DiscussionMixin {
           ),
           membersAuthorizedKeys,
         )
-        .build(seedSC, indexSCTransaction)
-        .originSign(originPrivateKey);
+        .build(seedSC, indexSCTransaction);
+
+    final transactionSC =
+        transactionSCBuildResult.transaction.originSign(originPrivateKey);
 
     // Estimation of fees and send to SC's transaction chain
     final transactionTransferResult = await _provisionSC(
@@ -196,7 +198,7 @@ mixin DiscussionMixin {
 
     return (
       transaction: transactionSC,
-      transactionIndex: indexSCTransaction,
+      previousKeyPair: transactionSCBuildResult.keyPair,
     );
   }
 
@@ -272,7 +274,7 @@ end
     return membersAuthorizedKeys;
   }
 
-  Future<({Transaction transaction, int transactionIndex})> _provisionSC({
+  Future<({Transaction transaction, KeyPair previousKeyPair})> _provisionSC({
     required Keychain keychain,
     required ApiService apiService,
     required Transaction transactionSC,
@@ -294,17 +296,18 @@ end
       [issuerAddress],
     );
 
-    final index = indexMap[issuerAddress] ?? 0;
+    final index = (indexMap[issuerAddress] ?? 0) + 1;
+
+    final transactionBuildResult = keychain.buildTransaction(
+      transactionTransfer,
+      serviceName,
+      index,
+    );
 
     return (
-      transaction: keychain
-          .buildTransaction(
-            transactionTransfer,
-            serviceName,
-            index,
-          )
-          .originSign(originPrivateKey),
-      transactionIndex: index
+      transaction:
+          transactionBuildResult.transaction.originSign(originPrivateKey),
+      previousKeyPair: transactionBuildResult.keyPair,
     );
   }
 
