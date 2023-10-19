@@ -29,9 +29,14 @@ mixin MessagesMixin {
       }
     ''';
 
-    final tx = Transaction(type: 'transfer', data: Transaction.initData())
-        .setContent(message)
-        .addRecipient(discussionSCAddress);
+    final blockchainTxVersion = int.parse(
+      (await apiService.getBlockchainVersion()).version.transaction,
+    );
+    final tx = Transaction(
+      type: 'transfer',
+      version: blockchainTxVersion,
+      data: Transaction.initData(),
+    ).setContent(message).addRecipient(discussionSCAddress);
 
     final indexMap = await apiService.getTransactionIndex(
       [senderAddress],
