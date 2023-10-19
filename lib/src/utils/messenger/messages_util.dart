@@ -133,42 +133,44 @@ mixin MessagesMixin {
     int limit = 0,
     int pagingOffset = 0,
   }) async {
-    final messagesList = await apiService.getTransactionInputs(
-      [discussionSCAddress],
+    final transactions = await _listTransactions(
+      apiService: apiService,
+      discussionSCAddress: discussionSCAddress,
+    );
+
+    final txContentMessageAddressesToTransactionAddress =
+        await _txContentMessageAddressesToTransactionAddress(
+      apiService: apiService,
+      transactions: transactions,
       limit: limit,
       pagingOffset: pagingOffset,
     );
-    final txContentMessagesList =
-        messagesList[discussionSCAddress] ?? <TransactionInput>[];
-    final txContentMessagesAddresses = txContentMessagesList
-        .where(
-          (txContentMessage) =>
-              txContentMessage.from != null && txContentMessage.type == 'call',
-        )
-        .map((txContentMessage) => txContentMessage.from)
-        .whereType<String>()
-        .toList();
 
     final aeMessages = <AEMessage>[];
     final contents = await apiService.getTransaction(
-      txContentMessagesAddresses,
+      txContentMessageAddressesToTransactionAddress.keys.toList(),
       request:
           ' address, chainLength, data { content }, previousPublicKey, validationStamp { timestamp } ',
     );
 
     if (contents.isEmpty) return [];
 
-    final discussionKeyAccess = uint8ListToHex(
-      await DiscussionUtil().getDiscussionKeyAccess(
-        apiService: apiService,
-        discussionSCAddress: discussionSCAddress,
-        keyPair: readerKeyPair,
-      ),
-    );
+    for (final contentMessageAddress
+        in txContentMessageAddressesToTransactionAddress.keys.toList()) {
+      final discussionKeyAccess = uint8ListToHex(
+        await DiscussionUtil().getDiscussionKeyAccess(
+          apiService: apiService,
+          discussionSCAddress: txContentMessageAddressesToTransactionAddress[
+              contentMessageAddress]!,
+          keyPair: readerKeyPair,
+        ),
+      );
 
-    for (final contentMessageAddress in txContentMessagesAddresses) {
       final contentMessageTransaction = contents[contentMessageAddress];
-      if (contentMessageTransaction == null) continue;
+      if (contentMessageTransaction?.data?.content == null ||
+          contentMessageTransaction!.data!.content!.isEmpty) {
+        continue;
+      }
 
       final transactionContentIM = TransactionContentMessaging.fromJson(
         jsonDecode(contentMessageTransaction.data!.content!),
@@ -214,6 +216,94 @@ mixin MessagesMixin {
     }
 
     return aeMessages;
+  }
+
+  Future<List<Transaction>> _listTransactions({
+    required ApiService apiService,
+    required String discussionSCAddress,
+  }) async {
+    final listTransactions = <Transaction>[];
+
+    final transactionChain = await apiService.getTransactionChain(
+      {discussionSCAddress: ''},
+      orderAsc: false,
+    );
+
+    if (transactionChain[discussionSCAddress] != null) {
+      listTransactions.addAll(transactionChain[discussionSCAddress]!.toList());
+    }
+
+    return listTransactions;
+  }
+
+  Future<Map<String, String>> _txContentMessageAddressesToTransactionAddress({
+    required ApiService apiService,
+    required List<Transaction> transactions,
+    int limit = 0,
+    int pagingOffset = 0,
+  }) async {
+    final txContentMessageAddressesToTransactionAddress = <String, String>{};
+    for (final transaction in transactions) {
+      final transactionAddress = transaction.address?.address;
+
+      if (transactionAddress == null) {
+        continue;
+      }
+
+      var bufPagingOffset = pagingOffset;
+      var bufTxContentMessageAddresses = <String>[];
+      do {
+        bufTxContentMessageAddresses = await _messagesAddresses(
+          apiService: apiService,
+          discussionSCAddress: transactionAddress,
+          limit: limit,
+          pagingOffset: bufPagingOffset,
+        );
+
+        for (final txContentMessageAddress in bufTxContentMessageAddresses) {
+          txContentMessageAddressesToTransactionAddress[
+              txContentMessageAddress] = transactionAddress;
+        }
+        bufPagingOffset += limit;
+      } while (txContentMessageAddressesToTransactionAddress.length < limit &&
+          bufTxContentMessageAddresses.isNotEmpty);
+
+      if (txContentMessageAddressesToTransactionAddress.length >= limit) {
+        break;
+      }
+    }
+    return txContentMessageAddressesToTransactionAddress;
+  }
+
+  Future<List<String>> _messagesAddresses({
+    required ApiService apiService,
+    required String discussionSCAddress,
+    int limit = 0,
+    int pagingOffset = 0,
+  }) async {
+    final messagesList = await apiService.getTransactionInputs(
+      [discussionSCAddress],
+      limit: limit,
+      pagingOffset: pagingOffset,
+    );
+
+    final txContentMessagesList =
+        messagesList[discussionSCAddress] ?? <TransactionInput>[];
+    final messageTransactions = txContentMessagesList
+        .where(
+          (txContentMessage) =>
+              txContentMessage.from != null && txContentMessage.type == 'call',
+        )
+        .map((txContentMessage) => txContentMessage.from)
+        .whereType<String>()
+        .toList();
+    final contents = await apiService.getTransaction(
+      messageTransactions,
+      request:
+          ' address, chainLength, data { content }, previousPublicKey, validationStamp { timestamp } ',
+    );
+
+    return messageTransactions;
   }
 }
 
