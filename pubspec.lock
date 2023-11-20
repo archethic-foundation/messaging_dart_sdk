@@ -28,10 +28,11 @@ packages:
   archethic_lib_dart:
     dependency: "direct main"
     description:
-      name: archethic_lib_dart
-      sha256: "53477e3054cdb95158a53c80114c22f6cd23cf576202bfafa235692821306bba"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: dev
+      resolved-ref: "0527f219d15cbba0b236ab5eb7b3d377535a1045"
+      url: "https://github.com/archethic-foundation/libdart.git"
+    source: git
     version: "3.3.3"
   archive:
     dependency: "direct main"
