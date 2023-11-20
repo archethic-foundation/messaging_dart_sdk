@@ -28,12 +28,11 @@ packages:
   archethic_lib_dart:
     dependency: "direct main"
     description:
-      path: "."
-      ref: dev
-      resolved-ref: "0527f219d15cbba0b236ab5eb7b3d377535a1045"
-      url: "https://github.com/archethic-foundation/libdart.git"
-    source: git
-    version: "3.3.3"
+      name: archethic_lib_dart
+      sha256: "268b56dfd2644b13e397b426447e5bacd3a815160344e9770ea6ad52f220a88a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.4"
   archive:
     dependency: "direct main"
     description:
@@ -191,6 +190,14 @@ packages:
     description:
       name: dart_style
       sha256: abd7625e16f51f554ea244d090292945ec4d4be7bfbaf2ec8cccea568919d334
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.3"
+  decimal:
+    dependency: transitive
+    description:
+      name: decimal
+      sha256: "24a261d5d5c87e86c7651c417a5dbdf8bcd7080dd592533910e8d0505a279f21"
       url: "https://pub.dev"
     source: hosted
     version: "2.3.3"
@@ -546,6 +553,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  rational:
+    dependency: transitive
+    description:
+      name: rational
+      sha256: ba58e9e18df9abde280e8b10051e4bce85091e41e8e7e411b6cde2e738d357cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.2"
   rxdart:
     dependency: transitive
     description:
