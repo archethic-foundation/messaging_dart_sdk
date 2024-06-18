@@ -75,8 +75,7 @@ mixin MessagesMixin {
 
     final transaction = result.transaction;
     await TransactionUtil().sendTransactions(
-      transactions: [transaction],
-      apiService: apiService,
+      [transaction],
     );
     return (
       transactionAddress: transaction.address!,
