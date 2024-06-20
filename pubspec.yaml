@@ -3,7 +3,7 @@ name: archethic_messaging_lib_dart
 description: Archethic dart library for Flutter for Node and Browser. This library aims to provide a easy way to manage Archethic Messaging Features
 homepage: https://github.com/archethic-foundation/messaging_backend
 
-version: 0.0.14
+version: 0.0.15
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -32,6 +32,9 @@ dev_dependencies:
 
   # Code generation for immutable classes that has a simple syntax/API without compromising on the features
   freezed: ^2.5.2
+
+  # Json serialization code generator
+  json_serializable: ^6.8.0
 
   # A full featured library for writing and running Dart tests across platforms.
   test: ^1.24.6

@@ -6,8 +6,8 @@ part of 'ae_discussion.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AEDiscussion _$$_AEDiscussionFromJson(Map<String, dynamic> json) =>
-    _$_AEDiscussion(
+_$AEDiscussionImpl _$$AEDiscussionImplFromJson(Map<String, dynamic> json) =>
+    _$AEDiscussionImpl(
       discussionName: json['discussionName'] as String? ?? '',
       address: json['address'] as String? ?? '',
       usersPubKey: (json['usersPubKey'] as List<dynamic>?)
@@ -18,10 +18,10 @@ _$_AEDiscussion _$$_AEDiscussionFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      timestampLastUpdate: json['timestampLastUpdate'] as int? ?? 0,
+      timestampLastUpdate: (json['timestampLastUpdate'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$_AEDiscussionToJson(_$_AEDiscussion instance) =>
+Map<String, dynamic> _$$AEDiscussionImplToJson(_$AEDiscussionImpl instance) =>
     <String, dynamic>{
       'discussionName': instance.discussionName,
       'address': instance.address,

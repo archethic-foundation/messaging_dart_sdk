@@ -6,15 +6,16 @@ part of 'ae_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AEMessage _$$_AEMessageFromJson(Map<String, dynamic> json) => _$_AEMessage(
+_$AEMessageImpl _$$AEMessageImplFromJson(Map<String, dynamic> json) =>
+    _$AEMessageImpl(
       address: json['address'] as String? ?? '',
       senderGenesisPublicKey: json['senderGenesisPublicKey'] as String? ?? '',
       content: json['content'] as String? ?? '',
-      timestampCreation: json['timestampCreation'] as int? ?? 0,
+      timestampCreation: (json['timestampCreation'] as num?)?.toInt() ?? 0,
       sender: json['sender'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_AEMessageToJson(_$_AEMessage instance) =>
+Map<String, dynamic> _$$AEMessageImplToJson(_$AEMessageImpl instance) =>
     <String, dynamic>{
       'address': instance.address,
       'senderGenesisPublicKey': instance.senderGenesisPublicKey,

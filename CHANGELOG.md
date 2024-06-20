@@ -1,5 +1,9 @@
 Changelog
 =========
+#### Version 0.0.15
+* Add `json_serializable` explicit dependency
+* Cleanup generated code
+
 #### Version 0.0.14
 * Upgrade dependencies
 
