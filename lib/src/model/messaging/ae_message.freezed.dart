@@ -12,7 +12,7 @@ part of 'ae_message.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AEMessage _$AEMessageFromJson(Map<String, dynamic> json) {
   return _AEMessage.fromJson(json);
@@ -90,10 +90,11 @@ class _$AEMessageCopyWithImpl<$Res, $Val extends AEMessage>
 }
 
 /// @nodoc
-abstract class _$$_AEMessageCopyWith<$Res> implements $AEMessageCopyWith<$Res> {
-  factory _$$_AEMessageCopyWith(
-          _$_AEMessage value, $Res Function(_$_AEMessage) then) =
-      __$$_AEMessageCopyWithImpl<$Res>;
+abstract class _$$AEMessageImplCopyWith<$Res>
+    implements $AEMessageCopyWith<$Res> {
+  factory _$$AEMessageImplCopyWith(
+          _$AEMessageImpl value, $Res Function(_$AEMessageImpl) then) =
+      __$$AEMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -105,11 +106,11 @@ abstract class _$$_AEMessageCopyWith<$Res> implements $AEMessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AEMessageCopyWithImpl<$Res>
-    extends _$AEMessageCopyWithImpl<$Res, _$_AEMessage>
-    implements _$$_AEMessageCopyWith<$Res> {
-  __$$_AEMessageCopyWithImpl(
-      _$_AEMessage _value, $Res Function(_$_AEMessage) _then)
+class __$$AEMessageImplCopyWithImpl<$Res>
+    extends _$AEMessageCopyWithImpl<$Res, _$AEMessageImpl>
+    implements _$$AEMessageImplCopyWith<$Res> {
+  __$$AEMessageImplCopyWithImpl(
+      _$AEMessageImpl _value, $Res Function(_$AEMessageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -121,7 +122,7 @@ class __$$_AEMessageCopyWithImpl<$Res>
     Object? timestampCreation = null,
     Object? sender = null,
   }) {
-    return _then(_$_AEMessage(
+    return _then(_$AEMessageImpl(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -148,8 +149,8 @@ class __$$_AEMessageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AEMessage extends _AEMessage {
-  const _$_AEMessage(
+class _$AEMessageImpl extends _AEMessage {
+  const _$AEMessageImpl(
       {this.address = '',
       this.senderGenesisPublicKey = '',
       this.content = '',
@@ -157,8 +158,8 @@ class _$_AEMessage extends _AEMessage {
       this.sender = ''})
       : super._();
 
-  factory _$_AEMessage.fromJson(Map<String, dynamic> json) =>
-      _$$_AEMessageFromJson(json);
+  factory _$AEMessageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AEMessageImplFromJson(json);
 
   @override
   @JsonKey()
@@ -182,10 +183,10 @@ class _$_AEMessage extends _AEMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AEMessage &&
+            other is _$AEMessageImpl &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.senderGenesisPublicKey, senderGenesisPublicKey) ||
                 other.senderGenesisPublicKey == senderGenesisPublicKey) &&
@@ -203,12 +204,12 @@ class _$_AEMessage extends _AEMessage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AEMessageCopyWith<_$_AEMessage> get copyWith =>
-      __$$_AEMessageCopyWithImpl<_$_AEMessage>(this, _$identity);
+  _$$AEMessageImplCopyWith<_$AEMessageImpl> get copyWith =>
+      __$$AEMessageImplCopyWithImpl<_$AEMessageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AEMessageToJson(
+    return _$$AEMessageImplToJson(
       this,
     );
   }
@@ -220,11 +221,11 @@ abstract class _AEMessage extends AEMessage {
       final String senderGenesisPublicKey,
       final String content,
       final int timestampCreation,
-      final String sender}) = _$_AEMessage;
+      final String sender}) = _$AEMessageImpl;
   const _AEMessage._() : super._();
 
   factory _AEMessage.fromJson(Map<String, dynamic> json) =
-      _$_AEMessage.fromJson;
+      _$AEMessageImpl.fromJson;
 
   @override
   String get address;
@@ -238,6 +239,6 @@ abstract class _AEMessage extends AEMessage {
   String get sender;
   @override
   @JsonKey(ignore: true)
-  _$$_AEMessageCopyWith<_$_AEMessage> get copyWith =>
+  _$$AEMessageImplCopyWith<_$AEMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

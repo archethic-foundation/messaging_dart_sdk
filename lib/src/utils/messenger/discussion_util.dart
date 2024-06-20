@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:typed_data';
 
+import 'package:archethic_dapp_framework_flutter/archethic_dapp_framework_flutter.dart'
+    as aedappfm;
 import 'package:archethic_lib_dart/archethic_lib_dart.dart';
 import 'package:archethic_messaging_lib_dart/src/model/messaging/ae_discussion.dart';
 
@@ -105,8 +107,7 @@ mixin DiscussionMixin {
         transactionTransferBuildResult.transaction.originSign(originPrivateKey);
 
     await TransactionUtil().sendTransactions(
-      transactions: [transactionTransferSigned],
-      apiService: apiService,
+      [transactionTransferSigned],
     );
 
     return (
@@ -203,8 +204,7 @@ mixin DiscussionMixin {
     );
 
     await TransactionUtil().sendTransactions(
-      transactions: [transactionTransferResult.transaction, transactionSC],
-      apiService: apiService,
+      [transactionTransferResult.transaction, transactionSC],
     );
 
     return (
@@ -434,4 +434,4 @@ end
   }
 }
 
-class TransactionUtil with TransactionMixin {}
+class TransactionUtil with aedappfm.TransactionMixin {}
