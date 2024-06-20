@@ -12,7 +12,7 @@ part of 'transaction_content_messaging.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TransactionContentMessaging _$TransactionContentMessagingFromJson(
     Map<String, dynamic> json) {
@@ -72,25 +72,25 @@ class _$TransactionContentMessagingCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TransactionContentMessagingCopyWith<$Res>
+abstract class _$$TransactionContentMessagingImplCopyWith<$Res>
     implements $TransactionContentMessagingCopyWith<$Res> {
-  factory _$$_TransactionContentMessagingCopyWith(
-          _$_TransactionContentMessaging value,
-          $Res Function(_$_TransactionContentMessaging) then) =
-      __$$_TransactionContentMessagingCopyWithImpl<$Res>;
+  factory _$$TransactionContentMessagingImplCopyWith(
+          _$TransactionContentMessagingImpl value,
+          $Res Function(_$TransactionContentMessagingImpl) then) =
+      __$$TransactionContentMessagingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String compressionAlgo, String message});
 }
 
 /// @nodoc
-class __$$_TransactionContentMessagingCopyWithImpl<$Res>
+class __$$TransactionContentMessagingImplCopyWithImpl<$Res>
     extends _$TransactionContentMessagingCopyWithImpl<$Res,
-        _$_TransactionContentMessaging>
-    implements _$$_TransactionContentMessagingCopyWith<$Res> {
-  __$$_TransactionContentMessagingCopyWithImpl(
-      _$_TransactionContentMessaging _value,
-      $Res Function(_$_TransactionContentMessaging) _then)
+        _$TransactionContentMessagingImpl>
+    implements _$$TransactionContentMessagingImplCopyWith<$Res> {
+  __$$TransactionContentMessagingImplCopyWithImpl(
+      _$TransactionContentMessagingImpl _value,
+      $Res Function(_$TransactionContentMessagingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_TransactionContentMessagingCopyWithImpl<$Res>
     Object? compressionAlgo = null,
     Object? message = null,
   }) {
-    return _then(_$_TransactionContentMessaging(
+    return _then(_$TransactionContentMessagingImpl(
       compressionAlgo: null == compressionAlgo
           ? _value.compressionAlgo
           : compressionAlgo // ignore: cast_nullable_to_non_nullable
@@ -114,12 +114,14 @@ class __$$_TransactionContentMessagingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TransactionContentMessaging implements _TransactionContentMessaging {
-  const _$_TransactionContentMessaging(
+class _$TransactionContentMessagingImpl
+    implements _TransactionContentMessaging {
+  const _$TransactionContentMessagingImpl(
       {required this.compressionAlgo, required this.message});
 
-  factory _$_TransactionContentMessaging.fromJson(Map<String, dynamic> json) =>
-      _$$_TransactionContentMessagingFromJson(json);
+  factory _$TransactionContentMessagingImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TransactionContentMessagingImplFromJson(json);
 
   @override
   final String compressionAlgo;
@@ -132,10 +134,10 @@ class _$_TransactionContentMessaging implements _TransactionContentMessaging {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TransactionContentMessaging &&
+            other is _$TransactionContentMessagingImpl &&
             (identical(other.compressionAlgo, compressionAlgo) ||
                 other.compressionAlgo == compressionAlgo) &&
             (identical(other.message, message) || other.message == message));
@@ -148,13 +150,13 @@ class _$_TransactionContentMessaging implements _TransactionContentMessaging {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TransactionContentMessagingCopyWith<_$_TransactionContentMessaging>
-      get copyWith => __$$_TransactionContentMessagingCopyWithImpl<
-          _$_TransactionContentMessaging>(this, _$identity);
+  _$$TransactionContentMessagingImplCopyWith<_$TransactionContentMessagingImpl>
+      get copyWith => __$$TransactionContentMessagingImplCopyWithImpl<
+          _$TransactionContentMessagingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionContentMessagingToJson(
+    return _$$TransactionContentMessagingImplToJson(
       this,
     );
   }
@@ -164,10 +166,10 @@ abstract class _TransactionContentMessaging
     implements TransactionContentMessaging {
   const factory _TransactionContentMessaging(
       {required final String compressionAlgo,
-      required final String message}) = _$_TransactionContentMessaging;
+      required final String message}) = _$TransactionContentMessagingImpl;
 
   factory _TransactionContentMessaging.fromJson(Map<String, dynamic> json) =
-      _$_TransactionContentMessaging.fromJson;
+      _$TransactionContentMessagingImpl.fromJson;
 
   @override
   String get compressionAlgo;
@@ -175,6 +177,6 @@ abstract class _TransactionContentMessaging
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$_TransactionContentMessagingCopyWith<_$_TransactionContentMessaging>
+  _$$TransactionContentMessagingImplCopyWith<_$TransactionContentMessagingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'ae_discussion.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AEDiscussion _$AEDiscussionFromJson(Map<String, dynamic> json) {
   return _AEDiscussion.fromJson(json);
@@ -91,11 +91,11 @@ class _$AEDiscussionCopyWithImpl<$Res, $Val extends AEDiscussion>
 }
 
 /// @nodoc
-abstract class _$$_AEDiscussionCopyWith<$Res>
+abstract class _$$AEDiscussionImplCopyWith<$Res>
     implements $AEDiscussionCopyWith<$Res> {
-  factory _$$_AEDiscussionCopyWith(
-          _$_AEDiscussion value, $Res Function(_$_AEDiscussion) then) =
-      __$$_AEDiscussionCopyWithImpl<$Res>;
+  factory _$$AEDiscussionImplCopyWith(
+          _$AEDiscussionImpl value, $Res Function(_$AEDiscussionImpl) then) =
+      __$$AEDiscussionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +107,11 @@ abstract class _$$_AEDiscussionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AEDiscussionCopyWithImpl<$Res>
-    extends _$AEDiscussionCopyWithImpl<$Res, _$_AEDiscussion>
-    implements _$$_AEDiscussionCopyWith<$Res> {
-  __$$_AEDiscussionCopyWithImpl(
-      _$_AEDiscussion _value, $Res Function(_$_AEDiscussion) _then)
+class __$$AEDiscussionImplCopyWithImpl<$Res>
+    extends _$AEDiscussionCopyWithImpl<$Res, _$AEDiscussionImpl>
+    implements _$$AEDiscussionImplCopyWith<$Res> {
+  __$$AEDiscussionImplCopyWithImpl(
+      _$AEDiscussionImpl _value, $Res Function(_$AEDiscussionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$_AEDiscussionCopyWithImpl<$Res>
     Object? adminPublicKey = null,
     Object? timestampLastUpdate = null,
   }) {
-    return _then(_$_AEDiscussion(
+    return _then(_$AEDiscussionImpl(
       discussionName: null == discussionName
           ? _value.discussionName
           : discussionName // ignore: cast_nullable_to_non_nullable
@@ -150,8 +150,8 @@ class __$$_AEDiscussionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AEDiscussion extends _AEDiscussion {
-  const _$_AEDiscussion(
+class _$AEDiscussionImpl extends _AEDiscussion {
+  const _$AEDiscussionImpl(
       {this.discussionName = '',
       this.address = '',
       final List<String> usersPubKey = const [],
@@ -161,8 +161,8 @@ class _$_AEDiscussion extends _AEDiscussion {
         _adminPublicKey = adminPublicKey,
         super._();
 
-  factory _$_AEDiscussion.fromJson(Map<String, dynamic> json) =>
-      _$$_AEDiscussionFromJson(json);
+  factory _$AEDiscussionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AEDiscussionImplFromJson(json);
 
   @override
   @JsonKey()
@@ -198,10 +198,10 @@ class _$_AEDiscussion extends _AEDiscussion {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AEDiscussion &&
+            other is _$AEDiscussionImpl &&
             (identical(other.discussionName, discussionName) ||
                 other.discussionName == discussionName) &&
             (identical(other.address, address) || other.address == address) &&
@@ -226,12 +226,12 @@ class _$_AEDiscussion extends _AEDiscussion {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AEDiscussionCopyWith<_$_AEDiscussion> get copyWith =>
-      __$$_AEDiscussionCopyWithImpl<_$_AEDiscussion>(this, _$identity);
+  _$$AEDiscussionImplCopyWith<_$AEDiscussionImpl> get copyWith =>
+      __$$AEDiscussionImplCopyWithImpl<_$AEDiscussionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AEDiscussionToJson(
+    return _$$AEDiscussionImplToJson(
       this,
     );
   }
@@ -243,11 +243,11 @@ abstract class _AEDiscussion extends AEDiscussion {
       final String address,
       final List<String> usersPubKey,
       final List<String> adminPublicKey,
-      final int timestampLastUpdate}) = _$_AEDiscussion;
+      final int timestampLastUpdate}) = _$AEDiscussionImpl;
   const _AEDiscussion._() : super._();
 
   factory _AEDiscussion.fromJson(Map<String, dynamic> json) =
-      _$_AEDiscussion.fromJson;
+      _$AEDiscussionImpl.fromJson;
 
   @override
   String get discussionName;
@@ -261,6 +261,6 @@ abstract class _AEDiscussion extends AEDiscussion {
   int get timestampLastUpdate;
   @override
   @JsonKey(ignore: true)
-  _$$_AEDiscussionCopyWith<_$_AEDiscussion> get copyWith =>
+  _$$AEDiscussionImplCopyWith<_$AEDiscussionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

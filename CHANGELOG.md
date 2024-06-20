@@ -1,5 +1,8 @@
 Changelog
 =========
+#### Version 0.0.14
+* Upgrade dependencies
+
 #### Version 0.0.13
 * Upgrade dependencies
 
