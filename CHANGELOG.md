@@ -1,5 +1,8 @@
 Changelog
 =========
+#### Version 0.0.17
+* Migration to flutter 3.22
+
 #### Version 0.0.16
 * Upgrade dependencies
 
