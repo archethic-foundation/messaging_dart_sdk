@@ -2,11 +2,9 @@
 import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:typed_data';
-
-import 'package:archethic_dapp_framework_flutter/archethic_dapp_framework_flutter.dart'
-    as aedappfm;
 import 'package:archethic_lib_dart/archethic_lib_dart.dart';
 import 'package:archethic_messaging_lib_dart/src/model/messaging/ae_discussion.dart';
+import 'package:archethic_messaging_lib_dart/src/utils/transaction_util.dart';
 
 /// For group discussions, a dedicated transaction chain will contain a smart contract and its updates, as well as the discussion's rules and description.
 /// The messages will be contained in the inputs of the smart contracts in the chain.
@@ -108,6 +106,7 @@ mixin DiscussionMixin {
 
     await TransactionUtil().sendTransactions(
       [transactionTransferSigned],
+      apiService,
     );
 
     return (
@@ -205,6 +204,7 @@ mixin DiscussionMixin {
 
     await TransactionUtil().sendTransactions(
       [transactionTransferResult.transaction, transactionSC],
+      apiService,
     );
 
     return (
@@ -434,4 +434,4 @@ end
   }
 }
 
-class TransactionUtil with aedappfm.TransactionMixin {}
+class TransactionUtil with TransactionMixin {}
