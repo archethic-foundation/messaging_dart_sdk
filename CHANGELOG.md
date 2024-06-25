@@ -1,5 +1,8 @@
 Changelog
 =========
+#### Version 0.0.18
+* Remove archethic_dapp_framework_flutter dependency
+
 #### Version 0.0.17
 * Migration to flutter 3.22
 
