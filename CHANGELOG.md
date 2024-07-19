@@ -1,5 +1,8 @@
 Changelog
 =========
+#### Version 0.0.19
+* Upgrade dependencies
+
 #### Version 0.0.18
 * Remove archethic_dapp_framework_flutter dependency
 
