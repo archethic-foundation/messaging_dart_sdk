@@ -1,4 +1,3 @@
-/// SPDX-License-Identifier: AGPL-3.0-or-later
 library archethic_messaging;
 
 export 'src/model/messaging/ae_discussion.dart';

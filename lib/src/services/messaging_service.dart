@@ -1,4 +1,3 @@
-/// SPDX-License-Identifier: AGPL-3.0-or-later
 import 'package:archethic_lib_dart/archethic_lib_dart.dart' as archethic;
 import 'package:archethic_messaging_lib_dart/src/model/messaging/ae_discussion.dart';
 import 'package:archethic_messaging_lib_dart/src/model/messaging/ae_message.dart';

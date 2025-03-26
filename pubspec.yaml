@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
 name: archethic_messaging_lib_dart
 description: Archethic dart library for Flutter for Node and Browser. This library aims to provide a easy way to manage Archethic Messaging Features
 homepage: https://github.com/archethic-foundation/messaging_backend
