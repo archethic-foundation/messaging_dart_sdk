@@ -2,20 +2,14 @@ name: archethic_messaging_lib_dart
 description: Archethic dart library for Flutter for Node and Browser. This library aims to provide a easy way to manage Archethic Messaging Features
 homepage: https://github.com/archethic-foundation/messaging_backend
 
-version: 0.0.19
+version: 0.0.20-alpha.1
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   # Archethic dart library for Flutter based on Official Archethic Javascript library for Node and Browser
-  archethic_lib_dart: ^3.4.0
-  #archethic_lib_dart:
-  #  git:
-  #    url: https://github.com/archethic-foundation/libdart.git
-  #    ref: dev
-  #archethic_lib_dart:
-  #  path: ../libdart-2
+  archethic_lib_dart: ^7.7.0
 
   # Compression
   archive: ^3.3.7
